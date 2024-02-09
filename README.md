@@ -27,19 +27,21 @@ chromadb
 ## Compose update
 
 ```yaml
-hal:
-container_name: hal-container
-build:
-    context: .
-    dockerfile: api.Dockerfile
-volumes: # create a hal directory
-    - $PWD/hal:/hal
-environment: *env # add this anchor to the api service: &env
-networks:
-    - net
-depends_on:
-    pull-model:
-    condition: service_completed_successfully
+# by k33g_org
+  hal:
+    container_name: hal-container
+    build:
+      context: .
+      dockerfile: api.Dockerfile
+    volumes: # create a hal directory
+      - $PWD/hal:/hal
+    environment: *env # add this anchor to the api service: &env
+    networks:
+      - net
+    depends_on:
+      pull-model:
+        condition: service_completed_successfully
+
 ```
 > 👋 don't forget to add the `&env` anchor to the `api` service
 
